@@ -16,7 +16,7 @@ void Client::connectToServer() {
         std::cout << "チーム名\n>";
         std::string teamname;
         std::cin >> teamname;
-        std::cout << "サーバーに接続します。続行するなら何かキーを押してください。";
+        std::cout << "サーバーに接続します。続行するなら何かEnterキーを押してください。";
         std::cin.ignore(INT_MAX, '\n');
         std::cin.get();
 
@@ -65,7 +65,7 @@ void Client::Recv(int value[], int byte) {
         receive = asio::buffer_cast<const char*>(receive_buffer.data());
 
         for (int i = 0; i < 10; i++) {
-            value[i] = receive[i] - 48;
+            value[i] = receive[i] - '0';
         }
     }
     catch (std::exception& e) {
