@@ -4,7 +4,7 @@
 int main(int argc, char* argv[]) {
     connectToServer();
 
-    enum Dir { up, down, left, right };
+    enum Dir { up = 2, down = 8, left = 4, right = 6 };
 
     int value_ready[10];
     int value_method[10];
@@ -12,22 +12,22 @@ int main(int argc, char* argv[]) {
 
     while (getReady(value_ready)) {
 
-        if (value_ready[2] == 1) {
+        if (value_ready[up] == 1) {
             putUp(value_method);
         }
-        else if (value_ready[4] == 1) {
+        else if (value_ready[left] == 1) {
             putLeft(value_method);
         }
-        else if (value_ready[6] == 1) {
+        else if (value_ready[right] == 1) {
             putRight(value_method);
         }
-        else if (value_ready[8] == 1) {
+        else if (value_ready[down] == 1) {
             putDown(value_method);
         }
         else {
             while (true) {
                 if (walk_dir == up) {
-                    if (value_ready[2] != 2) {
+                    if (value_ready[up] != 2) {
                         walkUp(value_method);
                         break;
                     }
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 if (walk_dir == left) {
-                    if (value_ready[4] != 2) {
+                    if (value_ready[left] != 2) {
                         walkLeft(value_method);
                         break;
                     }
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 if (walk_dir == down) {
-                    if (value_ready[8] != 2) {
+                    if (value_ready[down] != 2) {
                         walkDown(value_method);
                         break;
                     }
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 if (walk_dir == right) {
-                    if (value_ready[6] != 2) {
+                    if (value_ready[right] != 2) {
                         walkRight(value_method);
                         break;
                     }
