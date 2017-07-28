@@ -2,6 +2,11 @@
 
 
 int main(int argc, char* argv[]) {
+    std::cout   << " **************************************\n"
+                << " *                                    *\n"
+                << " *       This program is sample.      *\n"
+                << " *                                    *\n"
+                << " **************************************" << std::endl;
     connectToServer();
 
     enum Dir { up = 2, down = 8, left = 4, right = 6 };
