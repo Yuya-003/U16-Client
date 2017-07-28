@@ -9,15 +9,16 @@ int main(int argc, char* argv[]) {
                 << " **************************************" << std::endl;
     connectToServer();
 
-    enum Dir { up = 2, down = 8, left = 4, right = 6 };
+    enum Dir { up = 2, down = 8, left = 4, right = 6, off = -1 };
 
     int value_ready[10];
     int value_method[10];
     Dir walk_dir = up;
+    Dir item_dir = off;
 
     while (getReady(value_ready)) {
-
-        if (value_ready[up] == 1) {
+        
+        if (value_ready[up] == 1) {     //敵をつぶすところ
             putUp(value_method);
         }
         else if (value_ready[left] == 1) {
@@ -29,7 +30,11 @@ int main(int argc, char* argv[]) {
         else if (value_ready[down] == 1) {
             putDown(value_method);
         }
-        else {
+        else {                          //アイテムを取るところ
+            if (item_dir != off) {
+
+            }
+
             while (true) {
                 if (walk_dir == up) {
                     if (value_ready[up] != 2) {
@@ -68,6 +73,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
             }
+
         }
 
 
