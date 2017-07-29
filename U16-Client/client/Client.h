@@ -6,6 +6,8 @@
 
 using asio::ip::tcp;
 
+enum Dir { up = 2, down = 8, left = 4, right = 6, off = -1 };
+
 class Client {
 private:
     asio::io_service io_service;
@@ -41,6 +43,11 @@ public:
     void searchDown (int value[]);
     void searchRight(int value[]);
     void searchLeft (int value[]);
+
+    void walk   (Dir dir, int value[]);
+    void put    (Dir dir, int value[]);
+    void look   (Dir dir, int value[]);
+    void search (Dir dir, int value[]);
 };
 
 
@@ -71,3 +78,8 @@ void searchUp   (int value[]);
 void searchDown (int value[]);
 void searchRight(int value[]);
 void searchLeft (int value[]);
+
+void walk   (Dir dir, int value[]);
+void put    (Dir dir, int value[]);
+void look   (Dir dir, int value[]);
+void search (Dir dir, int value[]);

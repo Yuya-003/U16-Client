@@ -84,7 +84,8 @@ bool Client::getReady(int value[]) {
         std::cout << "GetReady    : ";
         for (int i = 0; i < 10; i++)std::cout << value[i];
         std::cout << std::endl;
-        if (value[0] == 0)gameflug = false;
+        if (value[0] == 1)gameflug = true;
+        else gameflug = false;
     }
     return gameflug;
 }
@@ -266,6 +267,150 @@ void Client::searchLeft(int value[]) {
 }
 
 
+void Client::walk(Dir dir, int value[]) {
+    if (dir == up) {
+        Send("wu\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "WalkUp      : ";
+    }
+    else if (dir == left) {
+        Send("wl\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "WalkLeft    : ";
+    }
+    else if (dir == right) {
+        Send("wr\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "WalkRight   : ";
+    }
+    else if (dir == down) {
+        Send("wd\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "WalkDown    : ";
+    }
+    else {
+        std::cout << "error: 無効な方向です" << std::endl;
+        exit(0);
+    }
+    
+    for (int i = 0; i < 10; i++)std::cout << value[i];
+    std::cout << std::endl;
+    if (value[0] == 1)gameflug = true;
+    else gameflug = false;
+}
+
+void Client::put(Dir dir, int value[]) {
+    if (dir == up) {
+        Send("pu\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "PutUp       : ";
+    }
+    else if (dir == left) {
+        Send("pl\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "PutLeft     : ";
+    }
+    else if (dir == right) {
+        Send("pr\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "PutRight    : ";
+    }
+    else if (dir == down) {
+        Send("pd\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "PutDown     : ";
+    }
+    else {
+        std::cout << "error: 無効な方向です" << std::endl;
+        exit(0);
+    }
+
+    for (int i = 0; i < 10; i++)std::cout << value[i];
+    std::cout << std::endl;
+    if (value[0] == 1)gameflug = true;
+    else gameflug = false;
+}
+
+void Client::look(Dir dir, int value[]) {
+    if (dir == up) {
+        Send("lu\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "LookUp      : ";
+    }
+    else if (dir == left) {
+        Send("ll\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "LookLeft    : ";
+    }
+    else if (dir == right) {
+        Send("lr\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "LookRight   : ";
+    }
+    else if (dir == down) {
+        Send("ld\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "LookDown    : ";
+    }
+    else {
+        std::cout << "error: 無効な方向です" << std::endl;
+        exit(0);
+    }
+
+    for (int i = 0; i < 10; i++)std::cout << value[i];
+    std::cout << std::endl;
+    if (value[0] == 1)gameflug = true;
+    else gameflug = false;
+}
+
+void Client::search(Dir dir, int value[]) {
+    if (dir == up) {
+        Send("su\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "SearchUp    : ";
+    }
+    else if (dir == left) {
+        Send("sl\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "SearchLeft  : ";
+    }
+    else if (dir == right) {
+        Send("sr\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "SearchRight : ";
+    }
+    else if (dir == down) {
+        Send("sd\r\n");
+        Recv(value, 10);
+        Send("#\r\n");
+        std::cout << "SearchDown  : ";
+    }
+    else {
+        std::cout << "error: 無効な方向です" << std::endl;
+        exit(0);
+    }
+
+    for (int i = 0; i < 10; i++)std::cout << value[i];
+    std::cout << std::endl;
+    if (value[0] == 1)gameflug = true;
+    else gameflug = false;
+}
+
 /*~~~~~~~~~~~~~~~~~以下、クラスじゃなく書けるように無理やり直したもの~~~~~~~~~~~~~~~~~*/
 
 Client client;
@@ -290,3 +435,8 @@ void searchUp   (int value[]) { client.searchUp     (value); }
 void searchDown (int value[]) { client.searchDown   (value); }
 void searchRight(int value[]) { client.searchRight  (value); }
 void searchLeft (int value[]) { client.searchLeft   (value); }
+
+void walk   (Dir dir, int value[]){ client.walk      (dir, value); } 
+void put    (Dir dir, int value[]){ client.put       (dir, value); }
+void look   (Dir dir, int value[]){ client.look      (dir, value); }
+void search (Dir dir, int value[]){ client.search    (dir, value); }

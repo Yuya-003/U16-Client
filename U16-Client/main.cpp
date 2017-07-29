@@ -4,8 +4,6 @@
 int main(int argc, char* argv[]) {
     connectToServer();
 
-    enum Dir { up = 2, down = 8, left = 4, right = 6 };
-
     int value_ready[10];
     int value_method[10];
     Dir walk_dir = up;
