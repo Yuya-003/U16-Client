@@ -43,11 +43,6 @@ public:
     void searchDown (int value[]);
     void searchRight(int value[]);
     void searchLeft (int value[]);
-
-    void walk   (Dir dir, int value[]);
-    void put    (Dir dir, int value[]);
-    void look   (Dir dir, int value[]);
-    void search (Dir dir, int value[]);
 };
 
 
@@ -78,8 +73,3 @@ void searchUp   (int value[]);
 void searchDown (int value[]);
 void searchRight(int value[]);
 void searchLeft (int value[]);
-
-void walk   (Dir dir, int value[]);
-void put    (Dir dir, int value[]);
-void look   (Dir dir, int value[]);
-void search (Dir dir, int value[]);

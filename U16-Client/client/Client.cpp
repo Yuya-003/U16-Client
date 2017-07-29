@@ -3,20 +3,20 @@
 void Client::connectToServer() {
     try {
         //情報の入力
-        std::cout << "IPアドレス\n>";
+        std::cout << "IP address\n>";
         std::string addr;
         std::cin >> addr;
         if (addr == "localhost") {
             addr = "127.0.0.1";
             std::cout << addr << std::endl;
         }
-        std::cout << "ポート番号\n>";
+        std::cout << "Port number\n>";
         unsigned short port = 0;
         std::cin >> port;
-        std::cout << "チーム名\n>";
+        std::cout << "Team name\n>";
         std::string teamname;
         std::cin >> teamname;
-        std::cout << "サーバーに接続します。続行するなら何かEnterキーを押してください。";
+        std::cout << "Connect to the server. Please press the \"Enter\" key.";
         std::cin.ignore(INT_MAX, '\n');
         std::cin.get();
 
@@ -27,7 +27,7 @@ void Client::connectToServer() {
 
         gameflug = true;
         turn = 0;
-        std::cout << "<<----接続しました---->>" << std::endl;
+        std::cout << "<<---- Connected! ---->>" << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -266,150 +266,6 @@ void Client::searchLeft(int value[]) {
     else gameflug = false;
 }
 
-
-void Client::walk(Dir dir, int value[]) {
-    if (dir == up) {
-        Send("wu\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "WalkUp      : ";
-    }
-    else if (dir == left) {
-        Send("wl\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "WalkLeft    : ";
-    }
-    else if (dir == right) {
-        Send("wr\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "WalkRight   : ";
-    }
-    else if (dir == down) {
-        Send("wd\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "WalkDown    : ";
-    }
-    else {
-        std::cout << "error: 無効な方向です" << std::endl;
-        exit(0);
-    }
-    
-    for (int i = 0; i < 10; i++)std::cout << value[i];
-    std::cout << std::endl;
-    if (value[0] == 1)gameflug = true;
-    else gameflug = false;
-}
-
-void Client::put(Dir dir, int value[]) {
-    if (dir == up) {
-        Send("pu\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "PutUp       : ";
-    }
-    else if (dir == left) {
-        Send("pl\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "PutLeft     : ";
-    }
-    else if (dir == right) {
-        Send("pr\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "PutRight    : ";
-    }
-    else if (dir == down) {
-        Send("pd\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "PutDown     : ";
-    }
-    else {
-        std::cout << "error: 無効な方向です" << std::endl;
-        exit(0);
-    }
-
-    for (int i = 0; i < 10; i++)std::cout << value[i];
-    std::cout << std::endl;
-    if (value[0] == 1)gameflug = true;
-    else gameflug = false;
-}
-
-void Client::look(Dir dir, int value[]) {
-    if (dir == up) {
-        Send("lu\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "LookUp      : ";
-    }
-    else if (dir == left) {
-        Send("ll\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "LookLeft    : ";
-    }
-    else if (dir == right) {
-        Send("lr\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "LookRight   : ";
-    }
-    else if (dir == down) {
-        Send("ld\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "LookDown    : ";
-    }
-    else {
-        std::cout << "error: 無効な方向です" << std::endl;
-        exit(0);
-    }
-
-    for (int i = 0; i < 10; i++)std::cout << value[i];
-    std::cout << std::endl;
-    if (value[0] == 1)gameflug = true;
-    else gameflug = false;
-}
-
-void Client::search(Dir dir, int value[]) {
-    if (dir == up) {
-        Send("su\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "SearchUp    : ";
-    }
-    else if (dir == left) {
-        Send("sl\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "SearchLeft  : ";
-    }
-    else if (dir == right) {
-        Send("sr\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "SearchRight : ";
-    }
-    else if (dir == down) {
-        Send("sd\r\n");
-        Recv(value, 10);
-        Send("#\r\n");
-        std::cout << "SearchDown  : ";
-    }
-    else {
-        std::cout << "error: 無効な方向です" << std::endl;
-        exit(0);
-    }
-
-    for (int i = 0; i < 10; i++)std::cout << value[i];
-    std::cout << std::endl;
-    if (value[0] == 1)gameflug = true;
-    else gameflug = false;
-}
 
 /*~~~~~~~~~~~~~~~~~以下、クラスじゃなく書けるように無理やり直したもの~~~~~~~~~~~~~~~~~*/
 
