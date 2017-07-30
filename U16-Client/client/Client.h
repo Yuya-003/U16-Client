@@ -6,8 +6,6 @@
 
 using asio::ip::tcp;
 
-enum Dir { up = 2, down = 8, left = 4, right = 6, off = -1 };
-
 class Client {
 private:
     asio::io_service io_service;

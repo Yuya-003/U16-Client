@@ -291,8 +291,3 @@ void searchUp   (int value[]) { client.searchUp     (value); }
 void searchDown (int value[]) { client.searchDown   (value); }
 void searchRight(int value[]) { client.searchRight  (value); }
 void searchLeft (int value[]) { client.searchLeft   (value); }
-
-void walk   (Dir dir, int value[]){ client.walk      (dir, value); } 
-void put    (Dir dir, int value[]){ client.put       (dir, value); }
-void look   (Dir dir, int value[]){ client.look      (dir, value); }
-void search (Dir dir, int value[]){ client.search    (dir, value); }
