@@ -10,6 +10,8 @@ int main(int argc, char* argv[]) {
                 << " **************************************" << std::endl;
     connectToServer();
 
+    enum Dir { up = 2, down = 8, left = 4, right = 6, off = -1 };
+
     int value_ready[10];
     int value_method[10];
     Dir walk_dir = up;
