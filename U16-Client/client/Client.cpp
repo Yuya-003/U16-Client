@@ -3,20 +3,20 @@
 void Client::connectToServer() {
     try {
         //情報の入力
-        std::cout << "IPアドレス\n>";
+        std::cout << "IP address\n>";
         std::string addr;
         std::cin >> addr;
         if (addr == "localhost") {
             addr = "127.0.0.1";
             std::cout << addr << std::endl;
         }
-        std::cout << "ポート番号\n>";
+        std::cout << "Port number\n>";
         unsigned short port = 0;
         std::cin >> port;
-        std::cout << "チーム名\n>";
+        std::cout << "Team name\n>";
         std::string teamname;
         std::cin >> teamname;
-        std::cout << "サーバーに接続します。続行するなら何かEnterキーを押してください。";
+        std::cout << "Connect to the server. Please press the \"Enter\" key.";
         std::cin.ignore(INT_MAX, '\n');
         std::cin.get();
 
@@ -27,7 +27,7 @@ void Client::connectToServer() {
 
         gameflug = true;
         turn = 0;
-        std::cout << "<<----接続しました---->>" << std::endl;
+        std::cout << "<<---- Connected! ---->>" << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -84,7 +84,8 @@ bool Client::getReady(int value[]) {
         std::cout << "GetReady    : ";
         for (int i = 0; i < 10; i++)std::cout << value[i];
         std::cout << std::endl;
-        if (value[0] == 0)gameflug = false;
+        if (value[0] == 1)gameflug = true;
+        else gameflug = false;
     }
     return gameflug;
 }
