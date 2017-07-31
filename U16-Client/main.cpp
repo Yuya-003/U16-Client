@@ -45,6 +45,7 @@ void searchGame() {
     int value_method[10];
 
     unsigned int behavior = WALK | UP;
+    unsigned int prev_behavior = WALK | UP;
     Mode item_mode = off;
 
     try {
@@ -110,13 +111,38 @@ void searchGame() {
                             item_mode = right;
                         }
                     }
+
+                    else {
+
+                        //動くところ
+                        if (prev_behavior & UP) {
+                            if (value_ready[up] != 2) { behavior = WALK | UP; }
+                            else if (value_ready[left] != 2) { behavior = WALK | LEFT; }
+                            else if (value_ready[down] != 2) { behavior = WALK | DOWN; }
+                            else { behavior = WALK | RIGHT; }
+                        }
+                        else if (prev_behavior & LEFT) {
+                            if (value_ready[left] != 2) { behavior = WALK | LEFT; }
+                            else if (value_ready[down] != 2) { behavior = WALK | DOWN; }
+                            else if (value_ready[right] != 2) { behavior = WALK | RIGHT; }
+                            else { behavior = WALK | UP; }
+                        }
+                        else if (prev_behavior & DOWN) {
+                            if (value_ready[down] != 2) { behavior = WALK | DOWN; }
+                            else if (value_ready[right] != 2) { behavior = WALK | RIGHT; }
+                            else if (value_ready[up] != 2) { behavior = WALK | UP; }
+                            else { behavior = WALK | LEFT; }
+                        }
+                        else if (prev_behavior & RIGHT) {
+                            if (value_ready[right] != 2) { behavior = WALK | RIGHT; }
+                            else if (value_ready[up] != 2) { behavior = WALK | UP; }
+                            else if (value_ready[left] != 2) { behavior = WALK | LEFT; }
+                            else { behavior = WALK | DOWN; }
+                        }
+
+                    }
+
                 }
-                else {
-
-                    //動くところ
-
-                }
-
             }
 
             //メソッド実行部分
@@ -150,20 +176,25 @@ void searchGame() {
             }
 
             //メソッド後の探索
-            if (item_mode != off) {
+            if (item_mode == skip) {
+                item_mode = off;
+            }
+            else if (item_mode != off) {
                 if (item_mode == up) {
-
+                    if (value_method[left + 1] == 2) { item_mode = skip; }
                 }
                 else if (item_mode == left) {
-
+                    if (value_method[left + 1] == 2) { item_mode = skip; }
                 }
                 else if (item_mode == down) {
-
+                    if (value_method[left + 1] == 2) { item_mode = skip; }
                 }
                 else if (item_mode == right) {
-
+                    if (value_method[left + 1] == 2) { item_mode = skip; }
                 }
             }
+
+            prev_behavior = behavior;
 
         }
         //ここまでゲームのループ
