@@ -84,8 +84,13 @@ bool Client::getReady(int value[]) {
         std::cout << "GetReady    : ";
         for (int i = 0; i < 10; i++)std::cout << value[i];
         std::cout << std::endl;
-        if (value[0] == 1)gameflug = true;
-        else gameflug = false;
+        if (value[0] == 1) {
+            gameflug = true;
+        }
+        else {
+            gameflug = false;
+            std::cout << "<<---- Game over ---->>" << std::endl;
+        }
     }
     return gameflug;
 }
