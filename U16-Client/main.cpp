@@ -1,7 +1,7 @@
 ﻿#include "./client/Client.h"
-#include <thread>
 #include <exception>
 #include <cstdlib>
+#include <chrono>
 
 void delayPrint(std::string str);
 void searchGame();
@@ -21,9 +21,18 @@ int main(int argc, char* argv[]) {
 
 
 void delayPrint(std::string str) {
+    using namespace std::chrono;
+
     for (auto i = str.begin(); i != str.end(); i++) {
         std::cout << *i;
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+
+        auto start = system_clock::now();
+        auto end = start;
+        auto dur = end - start;
+        do {
+            end = system_clock::now();
+            dur = end - start;
+        } while (duration_cast<milliseconds>(dur) < milliseconds(100));
     }
 }
 
